@@ -1,0 +1,20 @@
+
+<html>
+<head>
+  <style>
+    body, html { margin: 0; padding: 0; }
+  </style>
+</head>
+<body>
+  <div style="width:100%;height:100%;max-width:100%">
+    <div id="game"></div>
+  </div>
+  <script>
+    EJS_player = "#game";
+    EJS_core = "segaMD";  // Replace with the core name, e.g., "nes"
+    EJS_pathtodata = "https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@4.2.3/data/";   // The emulator js stuff is being hosted on jsdelivr
+    EJS_gameUrl = "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@518ca4325683c82a7c7e53db1c452c6d18ac4947/retro/please_do_not_mind_about_this_folder/[SHC]%20[contest2025]%201210%20-%20Debut%20Sonic%20in%20Giovanni's%20Level%20Pack%202%20(credits%20to%20MDTravis%20&%20giovanni.gen).bin";  // Replace with the URL to your ROM file
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/EmulatorJS/EmulatorJS@4.2.3/data/loader.js"></script>
+</body>
+</html>
