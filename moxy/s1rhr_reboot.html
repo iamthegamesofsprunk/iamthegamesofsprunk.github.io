@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonic 1 go brrrr</title>
+  <style>
+    body, html { 
+      margin: 0; 
+      padding: 0; 
+      height: 100%; 
+    }
+    #game {
+      width: 100%;
+      height: 100%;
+    }
+    #reload-btn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      z-index: 1000;
+    }
+    #reload-btn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <button id="reload-btn">Reload</button>
+  <div id="game"></div>
+  <script>
+    // ROM list
+    const romList = [
+      "https://cdn.jsdelivr.net/gh/sonic-hacks-repo/sonic-hacks-archive@master/sonic-1-easy-mode/Sonic%20Easy%20Mode.zip",
+      
+      "https://cdn.jsdelivr.net/gh/sonic-hacks-repo/sonic-hacks-archive@master/white-sonic-in-sonic-1/WhiteSonic1Remade_Final(V1.24-Public_Release).bin",
+      
+      "https://cdn.jsdelivr.net/gh/sonic-hacks-repo/sonic-hacks-archive@master/sonic-1-harder-version/Sonic%201%20Harder%20Version%20v0.6%20(Hacking%20Contest%206%20build)%20(S1%20Hack).bin",
+      
+      "https://cdn.jsdelivr.net/gh/sonic-hacks-repo/sonic-hacks-archive@master/sonic-1-hold-right-to-win-edition/Sonic1HoldRightToWinEdition.bin",
+      
+      "https://cdn.jsdelivr.net/gh/sonic-hacks-repo/sonic-hacks-archive@master/sonic-1-mania-edition/Sonic_1__Mania_Edition_(Baraksha)_(SHC2016).zip",
+      
+      "https://cdn.jsdelivr.net/gh/sonic-hacks-repo/sonic-hacks-archive@master/sonic-1-the-ring-ride-1-2-3-%26-4/RingRide2.bin",
+      
+      "https://cdn.jsdelivr.net/gh/sonic-hacks-repo/sonic-hacks-archive@master/knuckles-in-sonic-1/Knuckles%20the%20Echidna%20in%20Sonic%20the%20Hedgehog%20by-stealth(S1%20Hack).BIN",
+      
+      "https://cdn.jsdelivr.net/gh/sonic-hacks-repo/sonic-hacks-archive@master/sonic-1-yolo-edition/Sonic%201%20-%20YOLO%20Edition.bin"
+    ];
+
+    // Function to reload the page
+    function reloadPage() {
+      location.reload();
+    }
+
+    // Attach click event to button
+    document.getElementById("reload-btn").addEventListener("click", reloadPage);
+
+    // Pick a random ROM on page load
+    const randomRom = romList[Math.floor(Math.random() * romList.length)];
+
+    // Configure EmulatorJS
+    EJS_player = "#game";
+    EJS_core = "segaMD";
+    EJS_pathtodata = "https://cdn.jsdelivr.net/gh/a456pur/seraph@81f551ca0aa8e3d6018d32d8ac5904ac9bc78f76/storage/emulatorjs/data/";
+    EJS_gameUrl = randomRom;
+    loadGame();
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/a456pur/seraph@81f551ca0aa8e3d6018d32d8ac5904ac9bc78f76/storage/emulatorjs/data/loader.js"></script>
+</body>
+</html>
