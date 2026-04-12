@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HEROMARI</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0a0a0f;
+      color: #e0e0ff;
+    }
+    header {
+      padding: 16px 24px;
+      border-bottom: 2px solid;
+      border-image: linear-gradient(90deg, #ff0040, #00ff88, #0080ff) 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, rgba(255, 0, 64, 0.05), rgba(0, 255, 136, 0.05), rgba(0, 128, 255, 0.05));
+    }
+    header h1 { 
+      font-size: 18px; 
+      color: #fff;
+      text-shadow: 0 0 10px #ff0040, 0 0 20px #00ff88, 0 0 30px #0080ff;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    #status {
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: #0f0f15;
+      color: #888;
+      border: 1px solid #333;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    #status.ok { 
+      color: #00ff88; 
+      background: rgba(0, 255, 136, 0.1);
+      border-color: #00ff88;
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    }
+    #status.err { 
+      color: #ff0040; 
+      background: rgba(255, 0, 64, 0.1);
+      border-color: #ff0040;
+      box-shadow: 0 0 10px rgba(255, 0, 64, 0.5);
+    }
+    #invest { 
+      padding: 0;
+      background: linear-gradient(135deg, rgba(255, 0, 64, 0.02), rgba(0, 255, 136, 0.02), rgba(0, 128, 255, 0.02));
+    }
+
+    /* RGB Search Bar Styling */
+    input[type="text"],
+    input[type="search"],
+    .lumin-search input,
+    [class*="search"] input,
+    [id*="search"] input {
+      background: rgba(15, 15, 21, 0.8) !important;
+      border: 2px solid #ff0040 !important;
+      color: #e0e0ff !important;
+      border-radius: 6px !important;
+      padding: 8px 12px !important;
+      box-shadow: 0 0 10px rgba(255, 0, 64, 0.3), inset 0 0 8px rgba(0, 255, 136, 0.1) !important;
+      transition: all 0.3s ease !important;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="search"]::placeholder,
+    .lumin-search input::placeholder,
+    [class*="search"] input::placeholder,
+    [id*="search"] input::placeholder {
+      color: #666 !important;
+    }
+
+    input[type="text"]:focus,
+    input[type="search"]:focus,
+    .lumin-search input:focus,
+    [class*="search"] input:focus,
+    [id*="search"] input:focus {
+      border-color: #00ff88 !important;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.5), inset 0 0 8px rgba(0, 128, 255, 0.2) !important;
+      outline: none !important;
+    }
+
+    /* Search button styling */
+    button,
+    [class*="search"] button,
+    .lumin-search button {
+      background: linear-gradient(135deg, #ff0040, #0080ff) !important;
+      border: none !important;
+      color: #fff !important;
+      border-radius: 4px !important;
+      padding: 8px 16px !important;
+      cursor: pointer !important;
+      font-weight: 600 !important;
+      box-shadow: 0 0 10px rgba(255, 0, 64, 0.4) !important;
+      transition: all 0.3s ease !important;
+    }
+
+    button:hover,
+    [class*="search"] button:hover,
+    .lumin-search button:hover {
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), 0 0 30px rgba(0, 128, 255, 0.4) !important;
+      transform: scale(1.05) !important;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HEROMARI</h1>
+    <span id="status">connecting...</span>
+  </header>
+
+  <div id="invest"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/luminsdk/script@latest/lumin.min.js"></script>
+  <script>
+    const status = document.getElementById('status');
+
+    Lumin.init({
+      container: '#invest',
+      theme: 'dark',
+      columns: 8,
+      rows: 4,
+      showSearch: true,
+      showCategories: true,
+      showRandom: true,
+
+      onReady: () => {
+        status.textContent = 'connected';
+        status.className = 'ok';
+      },
+
+      onGameStart: (game) => console.log('Playing:', game.name),
+      onGameEnd: () => console.log('Game closed'),
+
+      onError: (err) => {
+        status.textContent = err.message;
+        status.className = 'err';
+      },
+    });
+  </script>
+</body>
+</html>
