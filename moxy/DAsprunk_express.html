@@ -1,192 +1,255 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>DAsprunk Express</title>
-        <link rel = icon href = https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/please_do_not_mind_about_this_folder/please_dont_dmca_(dumb_archives)/DSexpress_icon.png sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
-        <meta name = viewport content = "width = device-width, initial-scale = 1">
-        <style>
-             body, html {
-                height: 100%;
-                background-color: black;
-                color: white;
-            }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAsprunk Express</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/please_do_not_mind_about_this_folder/please_dont_dmca_(dumb_archives)/DSexpress_icon.png" type="image/vnd.microsoft.icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        html, body {
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #fff;
+            font-family: 'Love Ya Like A Sister', cursive;
+            font-weight: normal;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+            gap: 2rem;
+        }
+
+        #top {
+            text-align: center;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #top img {
+            max-width: 100%;
+            height: auto;
+            max-height: 180px;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 100, 0.3));
+            transition: filter 0.3s ease;
+        }
+
+        #top img:hover {
+            filter: drop-shadow(0 0 20px rgba(0, 255, 100, 0.6));
+        }
+
+        #top h1 {
+            margin-top: 1.5rem;
+            font-size: 2.5rem;
+            color: #0f0;
+            text-shadow: 0 0 10px rgba(0, 255, 100, 0.5);
+            letter-spacing: 1px;
+            font-family: 'Love Ya Like A Sister', cursive;
+        }
+
+        #box {
+            width: 100%;
+            max-width: 900px;
+            padding: 2rem;
+            background-color: rgba(30, 30, 30, 0.8);
+            border: 2px solid #0f0;
+            border-radius: 0.6em;
+            color: #aaa;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 1rem;
+            animation: fadeIn 0.8s ease-out 0.2s backwards;
+            box-shadow: 0 0 20px rgba(0, 255, 100, 0.2), inset 0 0 20px rgba(0, 255, 100, 0.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .game-btn {
+            padding: 1rem;
+            font-size: 1rem;
+            font-family: 'Helvetica, sans-serif;
+            font-weight: normal;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            color: #aaa;
+            border: 2px solid #555;
+            border-radius: 0.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            word-wrap: break-word;
+            aspect-ratio: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 100, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-btn:hover {
+            background: linear-gradient(135deg, #0f0 0%, #00aa44 100%);
+            color: #000;
+            border-color: #0f0;
+            box-shadow: 0 0 15px rgba(0, 255, 100, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .game-btn::before {
+            opacity: 1;
+        }
+
+        .game-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 0 10px rgba(0, 255, 100, 0.4), inset 0 0 10px rgba(0, 255, 100, 0.2);
+        }
+
+        .game-btn:focus-visible {
+            outline: 2px solid #0f0;
+            outline-offset: 2px;
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 600px) {
             body {
-                margin: 0;
-                overflow: hidden;
+                padding: 1.5rem 1rem;
+                gap: 1.5rem;
             }
 
-            body, #box, #top {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
+            #top h1 {
+                font-size: 2rem;
             }
 
             #box {
-                color: #aaa;
-                height: 20em;
-                width: 30em;
-                max-width: 90%;
-                max-height: 90%;
-                background-color: #333;
-                border-radius: 0.4em;
-                border: 2px solid #555;
-                position: relative;
-                flex-direction: row;
-                transition-duration: 0.2s;
-                overflow: hidden;
-                font-family: monospace;
-                font-weight: bold;
-                font-size: 20px;
-                margin: 5px;
-                text-align: center;
-                padding: 10px;
-                align-items: strech;
-                justify-content: flex-start;
-                flex-wrap: wrap;
-                overflow: scroll;
+                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+                padding: 1.5rem;
+                gap: 0.8rem;
             }
 
-            #box:hover, #box[drag] {
-                border-color: #38f;
-                color: #ddd
+            .game-btn {
+                font-size: 0.9rem;
+                padding: 0.8rem;
             }
+        }
 
-            #input {
-                cursor: pointer;
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
+        /* Scrollbar styling */
+        #box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #box::-webkit-scrollbar-track {
+            background: rgba(0, 255, 100, 0.1);
+            border-radius: 10px;
+        }
+
+        #box::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 100, 0.4);
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        #box::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 255, 100, 0.7);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top">
+        <img src="https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/please_do_not_mind_about_this_folder/please_dont_dmca_(dumb_archives)/DSexpress_logo.png" alt="DAsprunk Express Logo" width="455" height="199">
+        <h1><span style="color: #ffffff;">Oh hi, I'm just a lil pop star</span></h1>
+    </div>
+
+    <div id="box" role="region" aria-label="Game launcher buttons"></div>
+
+    <script>
+        // Game data - single source of truth
+        const games = [
+            { name: "Cory in the house", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clcoryinthehouse.html" },
+            { name: "Deltarune", url: "https://cdn.jsdelivr.net/gh/technonyte00/deltarune@main/index.html" },
+            { name: "Doki Doki Literature Club", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/cldokidokiliteratureclub_modified.html" },
+            { name: "FNF Doki Doki Takeover", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clfnfdokitakeoverplus.html" },
+            { name: "Sprunked", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clsprunked.html" },
+            { name: "Sonic Classic Heroes", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/sonic_classic_heroes.html" },
+            { name: "Undertale", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the-diesmos-fridge/undertale-diesmos.html" },
+            { name: "UNDERTALE 10TH ANNIVERSARY", url: "https://cdn.jsdelivr.net/gh/elite-gamez/elite-gamez.github.io@main/g/UNDERTALE%2010th%20Anniversary.html" },
+            { name: "Youtube unbl0cker", url: "https://cdn.jsdelivr.net/gh/3kh0Games/YoutubeUnblocked.Github.io@main/index.html" },
+            { name: "Sonic Megamix", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/megamix4.html" },
+            { name: "Blue Vortex", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clvortex.html" },
+            { name: "Bleach VS Naruto", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clbleachvsnaruto.html" },
+            { name: "$cratch", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clscratchoptions.html" },
+            { name: "Cold Front", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clcoldfront.html" },
+            { name: "Yohoho i0", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clyohohoio.html" },
+            { name: "I HATE YOU", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clihateyou.html" }
+        ];
+
+        // Function to open game in new window
+        async function openGame(url) {
+            try {
+                const response = await fetch(url + "?t=" + Date.now());
+                const text = await response.text();
+                const newWin = window.open("about:blank", "_blank");
+                
+                if (newWin) {
+                    newWin.document.open();
+                    newWin.document.write(text);
+                    newWin.document.close();
+                } else {
+                    console.warn("Pop-up was blocked. Please allow pop-ups for this site.");
+                }
+            } catch (error) {
+                console.error("Error loading game:", error);
             }
+        }
 
-            #display {
-                width: 100%;
-                height: 100%
-            }
-
-            select, button {
-                padding: 0.6em 0.4em;
-                margin: 0.5em;
-                width: 15em;
-                max-width: 100%;
-                font-family: monospace;
-                font-weight: bold;
-                font-size: 16px;
-                background-color: #444;
-                color: #aaa;
-                border-radius: 0.4em;
-                border: 1px solid #555;
-                cursor: pointer;
-                transition-duration: 0.2s
-            }
-
-            select:hover, button:hover {
-                background-color: #666;
-                color: #ddd
-            }
-
-            .logo {
-                width: 130px;
-                height: 130px;
-                filter: drop-shadow(0 0 10px white);
-            }
-
-            #top {
-                margin: 5px;
-            }
-        </style>
-         </head>
-
-    <body>
-        <div id="top">
-            <p><img src="https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/please_do_not_mind_about_this_folder/please_dont_dmca_(dumb_archives)/DSexpress_logo.png" alt="" width="455" height="199" /></p>
-            <h1>DAsprunk but very small</h1>
-            <br>
-        </div>
-        <div id="box">
-        <button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clcoryinthehouse.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Cory in the house</button>
-            
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/technonyte00/deltarune@main/index.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Deltarune</button>
-            
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/cldokidokiliteratureclub_modified.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Doki Doki Literature Club</button>
-            
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clfnfdokitakeoverplus.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->FNF Doki Doki Takeover</button>
-            
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clsprunked.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Sprunked</button>
-            
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/sonic_classic_heroes.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Sonic Classic Heroes</button>
-            
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the-diesmos-fridge/undertale-diesmos.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Undertale</button>
-            
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/elite-gamez/elite-gamez.github.io@main/g/UNDERTALE%2010th%20Anniversary.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->UNDERTALE 10TH ANNIVERSARY</button>
-            
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/3kh0Games/YoutubeUnblocked.Github.io@main/index.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Youtube unbl0cker</button>
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/megamix4.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Sonic Megamix</button>
-            
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clvortex.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Blue Vortex</button>
-            
-<button 
-        onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clbleachvsnaruto.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Bleach VS Naruto</button>
-            
-            <button
-            onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clscratchoptions.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->$cratch</button>
-            
-            <button
-            onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clcoldfront.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Cold Front</button>
-
-            <button
-            onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clyohohoio.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->Yohoho i0 </button>
-
-            <button
-            onclick='fetch("https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clihateyou.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
-        style="width: 100px; height: 100px; font-size: 100;"
->I HATE YOU </button>
-        </div>
-
-
-
+        // Render buttons dynamically
+        const gameContainer = document.getElementById("box");
+        games.forEach((game, index) => {
+            const button = document.createElement("button");
+            button.className = "game-btn";
+            button.textContent = game.name;
+            button.onclick = () => openGame(game.url);
+            button.setAttribute("aria-label", `Launch ${game.name}`);
+            gameContainer.appendChild(button);
+        });
+    </script>
+</body>
+</html>
