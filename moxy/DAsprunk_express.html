@@ -8,239 +8,383 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
-    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        html, body {
-            height: 100%;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            color: #fff;
-            font-family: 'Love Ya Like A Sister', cursive;
-            font-weight: normal;
-        }
+html, body {
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: #fff;
+    font-family: 'Love Ya Like A Sister', cursive;
+    font-weight: normal;
+}
 
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            overflow-y: auto;
-            padding: 2rem 1rem;
-            gap: 2rem;
-        }
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding: 2rem 1rem;
+    gap: 2rem;
+}
 
-        #top {
-            text-align: center;
-            animation: slideDown 0.6s ease-out;
-        }
+#top {
+    text-align: center;
+    animation: slideDown 0.6s ease-out;
+}
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        #top img {
-            max-width: 100%;
-            height: auto;
-            max-height: 180px;
-            filter: drop-shadow(0 0 10px rgba(0, 255, 100, 0.3));
-            transition: filter 0.3s ease;
-        }
+#top img {
+    max-width: 100%;
+    height: auto;
+    max-height: 180px;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 100, 0.3));
+    transition: filter 0.3s ease;
+}
 
-        #top img:hover {
-            filter: drop-shadow(0 0 20px rgba(0, 255, 100, 0.6));
-        }
+#top img:hover {
+    filter: drop-shadow(0 0 20px rgba(0, 255, 100, 0.6));
+}
 
-        #top h1 {
-            margin-top: 1.5rem;
-            font-size: 2.5rem;
-            color: #0f0;
-            text-shadow: 0 0 10px rgba(0, 255, 100, 0.5);
-            letter-spacing: 1px;
-            font-family: 'Love Ya Like A Sister', cursive;
-        }
+#top h1 {
+    margin-top: 1.5rem;
+    font-size: 2.5rem;
+    color: #0f0;
+    text-shadow: 0 0 10px rgba(0, 255, 100, 0.5);
+    letter-spacing: 1px;
+    font-family: 'Love Ya Like A Sister', cursive;
+}
 
-        #search-container {
-            width: 100%;
-            max-width: 900px;
-            animation: fadeIn 0.8s ease-out 0.1s backwards;
-        }
+#search-container {
+    width: 100%;
+    max-width: 900px;
+    animation: fadeIn 0.8s ease-out 0.1s backwards;
+}
 
-        #search-input {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            font-size: 1rem;
-            font-family: 'Love Ya Like A Sister', cursive;
-            background-color: rgba(30, 30, 30, 0.8);
-            color: #0f0;
-            border: 2px solid #0f0;
-            border-radius: 0.5em;
-            box-shadow: 0 0 10px rgba(0, 255, 100, 0.2), inset 0 0 10px rgba(0, 255, 100, 0.05);
-            transition: all 0.3s ease;
-        }
+#search-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: 'Love Ya Like A Sister', cursive;
+    background-color: rgba(30, 30, 30, 0.8);
+    color: #0f0;
+    border: 2px solid #0f0;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(0, 255, 100, 0.2), inset 0 0 10px rgba(0, 255, 100, 0.05);
+    transition: all 0.3s ease;
+}
 
-        #search-input::placeholder {
-            color: rgba(0, 255, 100, 0.5);
-        }
+#search-input::placeholder {
+    color: rgba(0, 255, 100, 0.5);
+}
 
-        #search-input:focus {
-            outline: none;
-            box-shadow: 0 0 20px rgba(0, 255, 100, 0.5), inset 0 0 10px rgba(0, 255, 100, 0.1);
-            border-color: #0f0;
-        }
+#search-input:focus {
+    outline: none;
+    box-shadow: 0 0 20px rgba(0, 255, 100, 0.5), inset 0 0 10px rgba(0, 255, 100, 0.1);
+    border-color: #0f0;
+}
 
-        #search-input:focus::placeholder {
-            color: rgba(0, 255, 100, 0.3);
-        }
+#search-input:focus::placeholder {
+    color: rgba(0, 255, 100, 0.3);
+}
 
-        #box {
-            width: 100%;
-            max-width: 900px;
-            padding: 2rem;
-            background-color: rgba(30, 30, 30, 0.8);
-            border: 2px solid #0f0;
-            border-radius: 0.6em;
-            color: #aaa;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-            gap: 1rem;
-            animation: fadeIn 0.8s ease-out 0.2s backwards;
-            box-shadow: 0 0 20px rgba(0, 255, 100, 0.2), inset 0 0 20px rgba(0, 255, 100, 0.05);
-        }
+#box {
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 2px solid #0f0;
+    border-radius: 0.6em;
+    color: #aaa;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 1rem;
+    animation: fadeIn 0.8s ease-out 0.2s backwards;
+    box-shadow: 0 0 20px rgba(0, 255, 100, 0.2), inset 0 0 20px rgba(0, 255, 100, 0.05);
+}
 
-        #no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 2rem;
-            color: #0f0;
-            font-size: 1.2rem;
-            display: none;
-        }
+#no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: #0f0;
+    font-size: 1.2rem;
+    display: none;
+}
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
-        .game-btn {
-            padding: 1rem;
-            font-size: 1rem;
-            font-family: 'Helvetica, sans-serif';
-            font-weight: normal;
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            color: #aaa;
-            border: 2px solid #555;
-            border-radius: 0.5em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            word-wrap: break-word;
-            aspect-ratio: 1;
-            position: relative;
-            overflow: hidden;
-        }
+.game-btn {
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: 'Helvetica, sans-serif';
+    font-weight: normal;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    color: #aaa;
+    border: 2px solid #555;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    word-wrap: break-word;
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+}
 
-        .game-btn.hidden {
-            display: none;
-        }
+.game-btn.hidden {
+    display: none;
+}
 
-        .game-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(0, 255, 100, 0.1) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+.game-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 255, 100, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-        .game-btn:hover {
-            background: linear-gradient(135deg, #0f0 0%, #00aa44 100%);
-            color: #000;
-            border-color: #0f0;
-            box-shadow: 0 0 15px rgba(0, 255, 100, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
+.game-btn:hover {
+    background: linear-gradient(135deg, #0f0 0%, #00aa44 100%);
+    color: #000;
+    border-color: #0f0;
+    box-shadow: 0 0 15px rgba(0, 255, 100, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
 
-        .game-btn::before {
-            opacity: 1;
-        }
+.game-btn:hover::before {
+    opacity: 1;
+}
 
-        .game-btn:active {
-            transform: translateY(0);
-            box-shadow: 0 0 10px rgba(0, 255, 100, 0.4), inset 0 0 10px rgba(0, 255, 100, 0.2);
-        }
+.game-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(0, 255, 100, 0.4), inset 0 0 10px rgba(0, 255, 100, 0.2);
+}
 
-        .game-btn:focus-visible {
-            outline: 2px solid #0f0;
-            outline-offset: 2px;
-        }
+.game-btn:focus-visible {
+    outline: 2px solid #0f0;
+    outline-offset: 2px;
+}
 
-        /* Mobile optimization */
-        @media (max-width: 600px) {
-            body {
-                padding: 1.5rem 1rem;
-                gap: 1.5rem;
-            }
+/* Modal Styles */
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
 
-            #top h1 {
-                font-size: 2rem;
-            }
+.modal.hidden {
+    display: none;
+}
 
-            #box {
-                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-                padding: 1.5rem;
-                gap: 0.8rem;
-            }
+.modal-content {
+    background-color: rgba(30, 30, 30, 0.95);
+    border: 2px solid #0f0;
+    border-radius: 0.6em;
+    box-shadow: 0 0 30px rgba(0, 255, 100, 0.4);
+    width: 90%;
+    height: 90%;
+    max-width: 1200px;
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+}
 
-            .game-btn {
-                font-size: 0.9rem;
-                padding: 0.8rem;
-            }
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-            #search-input {
-                font-size: 1rem;
-                padding: 0.7rem 0.9rem;
-            }
-        }
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #0f0;
+}
 
-        /* Scrollbar styling */
-        #box::-webkit-scrollbar {
-            width: 8px;
-        }
+#modal-title {
+    color: #0f0;
+    font-family: 'Love Ya Like A Sister', cursive;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px rgba(0, 255, 100, 0.5);
+}
 
-        #box::-webkit-scrollbar-track {
-            background: rgba(0, 255, 100, 0.1);
-            border-radius: 10px;
-        }
+.modal-close {
+    background: none;
+    border: none;
+    color: #0f0;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        #box::-webkit-scrollbar-thumb {
-            background: rgba(0, 255, 100, 0.4);
-            border-radius: 10px;
-            transition: background 0.3s ease;
-        }
+.modal-close:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 255, 100, 0.6);
+}
 
-        #box::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 255, 100, 0.7);
-        }
-    </style>
+.modal-body {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+#game-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #000;
+}
+
+#game-iframe:-webkit-full-screen {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-top: 1px solid #0f0;
+    justify-content: flex-end;
+}
+
+.modal-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-family: 'Love Ya Like A Sister', cursive;
+    background: linear-gradient(135deg, #0f0 0%, #00aa44 100%);
+    color: #000;
+    border: 2px solid #0f0;
+    border-radius: 0.4em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.modal-btn:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 100, 0.6);
+    transform: translateY(-2px);
+}
+
+.modal-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(0, 255, 100, 0.4);
+}
+
+.modal-btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Mobile optimization */
+@media (max-width: 600px) {
+    body {
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+
+    #top h1 {
+        font-size: 2rem;
+    }
+
+    #box {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        padding: 1.5rem;
+        gap: 0.8rem;
+    }
+
+    .game-btn {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    #search-input {
+        font-size: 1rem;
+        padding: 0.7rem 0.9rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        height: 95%;
+        max-height: 600px;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .modal-btn {
+        width: 100%;
+    }
+}
+
+/* Scrollbar styling */
+#box::-webkit-scrollbar {
+    width: 8px;
+}
+
+#box::-webkit-scrollbar-track {
+    background: rgba(0, 255, 100, 0.1);
+    border-radius: 10px;
+}
+
+#box::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 100, 0.4);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+#box::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 100, 0.7);
+}
+</style>
 </head>
 
 <body>
@@ -262,90 +406,320 @@
         <div id="no-results">No games found matching your search.</div>
     </div>
 
+    <!-- Pop-up Modal -->
+    <div id="game-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Game</h2>
+                <button class="modal-close" aria-label="Close game window">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="game-iframe" title="Game content"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button id="fullscreen-btn" class="modal-btn" aria-label="Toggle fullscreen">⛶ Fullscreen</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Game data - single source of truth
-        const games = [
-            { name: "Cory in the house", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clcoryinthehouse.html" },
-            { name: "Deltarune", url: "https://cdn.jsdelivr.net/gh/technonyte00/deltarune@main/index.html" },
-            { name: "Doki Doki Literature Club", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/cldokidokiliteratureclub_modified.html" },
-            { name: "FNF Doki Doki Takeover", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clfnfdokitakeoverplus.html" },
-            { name: "Sprunked", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clsprunked.html" },
-            { name: "Sonic Classic Heroes", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/sonic_classic_heroes.html" },
-            { name: "Undertale", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the-diesmos-fridge/undertale-diesmos.html" },
-            { name: "UNDERTALE 10TH ANNIVERSARY", url: "https://cdn.jsdelivr.net/gh/elite-gamez/elite-gamez.github.io@main/g/UNDERTALE%2010th%20Anniversary.html" },
-            { name: "Youtube unbl0cker", url: "https://cdn.jsdelivr.net/gh/3kh0Games/YoutubeUnblocked.Github.io@main/index.html" },
-            { name: "Sonic Megamix", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/megamix4.html" },
-            { name: "Blue Vortex", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clvortex.html" },
-            { name: "Bleach VS Naruto", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clbleachvsnaruto.html" },
-            { name: "$cratch", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clscratchoptions.html" },
-            { name: "Cold Front", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clcoldfront.html" },
-            { name: "Yohoho i0", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clyohohoio.html" },
-            { name: "I HATE YOU", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clihateyou.html" },
-            { name: "Sonic 1 ROM Hack Roulette", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/moxy/s1rhr_reboot.html" }
-        ];
+// Game data - single source of truth
+const games = [
+    { name: "Cory in the house", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clcoryinthehouse.html" },
+    { name: "Deltarune", url: "https://cdn.jsdelivr.net/gh/technonyte00/deltarune@main/index.html" },
+    { name: "Doki Doki Literature Club", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/cldokidokiliteratureclub_modified.html" },
+    { name: "FNF Doki Doki Takeover", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clfnfdokitakeoverplus.html" },
+    { name: "Sprunked", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clsprunked.html" },
+    { name: "Sonic Classic Heroes", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/sonic_classic_heroes.html" },
+    { name: "Undertale", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the-diesmos-fridge/undertale-diesmos.html" },
+    { name: "UNDERTALE 10TH ANNIVERSARY", url: "https://cdn.jsdelivr.net/gh/elite-gamez/elite-gamez.github.io@main/g/UNDERTALE%2010th%20Anniversary.html" },
+    { name: "Youtube unbl0cker", url: "https://cdn.jsdelivr.net/gh/3kh0Games/YoutubeUnblocked.Github.io@main/index.html" },
+    { name: "Sonic Megamix", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/retro/megamix4.html" },
+    { name: "Blue Vortex", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clvortex.html" },
+    { name: "Bleach VS Naruto", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clbleachvsnaruto.html" },
+    { name: "$cratch", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clscratchoptions.html" },
+    { name: "Cold Front", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clcoldfront.html" },
+    { name: "Yohoho i0", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clyohohoio.html" },
+    { name: "I HATE YOU", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clihateyou.html" },
+    { name: "Sonic 1 ROM Hack Roulette", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/moxy/s1rhr_reboot.html" }
+];
 
-        // Function to open game in new window
-        async function openGame(url) {
-            try {
-                const response = await fetch(url + "?t=" + Date.now());
-                const text = await response.text();
-                const newWin = window.open("about:blank", "_blank");
-                
-                if (newWin) {
-                    newWin.document.open();
-                    newWin.document.write(text);
-                    newWin.document.close();
-                } else {
-                    console.warn("Pop-up was blocked. Please allow pop-ups for this site.");
-                }
-            } catch (error) {
-                console.error("Error loading game:", error);
-            }
+// DOM Elements
+const gameContainer = document.getElementById("box");
+const noResults = document.getElementById("no-results");
+const searchInput = document.getElementById("search-input");
+const gameModal = document.getElementById("game-modal");
+const modalTitle = document.getElementById("modal-title");
+const gameIframe = document.getElementById("game-iframe");
+const modalCloseBtn = document.querySelector(".modal-close");
+const fullscreenBtn = document.getElementById("fullscreen-btn");
+
+// State management
+const state = {
+    gameButtons: {},
+    currentGame: null,
+    currentGameUrl: null,
+    isFullscreen: false
+};
+
+/**
+ * Fetches game HTML and creates a blob URL
+ * @param {string} url - The URL of the game to fetch
+ * @returns {Promise<string>} - The blob URL or error message
+ */
+async function fetchGameAsBlob(url) {
+    try {
+        const response = await fetch(url + "?t=" + Date.now());
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        
+        const text = await response.text();
+        const blob = new Blob([text], { type: 'text/html' });
+        const blobUrl = URL.createObjectURL(blob);
+        
+        return blobUrl;
+    } catch (error) {
+        console.error("Error fetching game:", error);
+        throw error;
+    }
+}
 
-        // Render buttons dynamically
-        const gameContainer = document.getElementById("box");
-        const noResults = document.getElementById("no-results");
-        const searchInput = document.getElementById("search-input");
-        const gameButtons = {};
+/**
+ * Opens a game in a pop-up modal window with iframe
+ * @param {string} gameName - The name of the game
+ * @param {string} url - The URL of the game
+ */
+async function openGameInModal(gameName, url) {
+    try {
+        // Show loading state
+        modalTitle.textContent = `${gameName} (Loading...)`;
+        gameModal.classList.remove("hidden");
+        gameIframe.src = "";
+        
+        // Fetch game and create blob URL
+        const blobUrl = await fetchGameAsBlob(url);
+        
+        // Set iframe source to blob URL
+        gameIframe.src = blobUrl;
+        
+        // Update state
+        state.currentGame = gameName;
+        state.currentGameUrl = url;
+        state.isFullscreen = false;
+        
+        // Update modal title
+        modalTitle.textContent = gameName;
+        
+        // Reset fullscreen button state
+        fullscreenBtn.textContent = "⛶ Fullscreen";
+        
+    } catch (error) {
+        modalTitle.textContent = `${gameName} (Failed to Load)`;
+        gameIframe.src = "";
+        console.error("Failed to open game in modal:", error);
+        
+        // Show error after a delay
+        setTimeout(() => {
+            alert(`Failed to load ${gameName}. Please try again.`);
+        }, 500);
+    }
+}
 
-        games.forEach((game, index) => {
-            const button = document.createElement("button");
-            button.className = "game-btn";
-            button.textContent = game.name;
-            button.onclick = () => openGame(game.url);
-            button.setAttribute("aria-label", `Launch ${game.name}`);
-            gameContainer.insertBefore(button, noResults);
-            gameButtons[game.name.toLowerCase()] = button;
-        });
+/**
+ * Toggles fullscreen mode for the iframe
+ */
+async function toggleFullscreen() {
+    try {
+        const iframeElement = gameIframe;
+        
+        if (!state.isFullscreen) {
+            // Request fullscreen
+            if (iframeElement.requestFullscreen) {
+                await iframeElement.requestFullscreen();
+            } else if (iframeElement.webkitRequestFullscreen) {
+                await iframeElement.webkitRequestFullscreen();
+            } else if (iframeElement.mozRequestFullScreen) {
+                await iframeElement.mozRequestFullScreen();
+            } else if (iframeElement.msRequestFullscreen) {
+                await iframeElement.msRequestFullscreen();
+            }
+            
+            state.isFullscreen = true;
+            fullscreenBtn.textContent = "⛶ Exit Fullscreen";
+        } else {
+            // Exit fullscreen
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else if (document.webkitFullscreenElement) {
+                document.webkitExitFullscreen();
+            } else if (document.mozFullScreenElement) {
+                document.mozCancelFullScreen();
+            } else if (document.msFullscreenElement) {
+                document.msExitFullscreen();
+            }
+            
+            state.isFullscreen = false;
+            fullscreenBtn.textContent = "⛶ Fullscreen";
+        }
+    } catch (error) {
+        console.error("Fullscreen error:", error);
+        alert("Fullscreen is not supported or was denied.");
+    }
+}
 
-        // Search functionality
-        searchInput.addEventListener("input", (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            let visibleCount = 0;
+/**
+ * Closes the game modal and cleans up resources
+ */
+function closeModal() {
+    gameModal.classList.add("hidden");
+    
+    // Revoke blob URL to free memory
+    if (gameIframe.src && gameIframe.src.startsWith("blob:")) {
+        URL.revokeObjectURL(gameIframe.src);
+    }
+    
+    gameIframe.src = "";
+    state.currentGame = null;
+    state.currentGameUrl = null;
+    state.isFullscreen = false;
+    fullscreenBtn.textContent = "⛶ Fullscreen";
+}
 
-            games.forEach((game) => {
-                const button = gameButtons[game.name.toLowerCase()];
-                const matches = game.name.toLowerCase().includes(query);
+/**
+ * Renders game buttons dynamically
+ */
+function renderGameButtons() {
+    games.forEach((game) => {
+        const button = document.createElement("button");
+        button.className = "game-btn";
+        button.textContent = game.name;
+        button.onclick = () => openGameInModal(game.name, game.url);
+        button.setAttribute("aria-label", `Launch ${game.name}`);
+        gameContainer.insertBefore(button, noResults);
+        state.gameButtons[game.name.toLowerCase()] = button;
+    });
+}
 
-                if (matches && query.length > 0) {
-                    button.classList.remove("hidden");
-                    visibleCount++;
-                } else if (query.length === 0) {
-                    button.classList.remove("hidden");
-                    visibleCount++;
-                } else {
-                    button.classList.add("hidden");
-                }
-            });
+/**
+ * Handles search input and filters game buttons
+ * @param {string} query - The search query
+ */
+function handleSearch(query) {
+    const trimmedQuery = query.toLowerCase().trim();
+    let visibleCount = 0;
 
-            // Show "no results" message if nothing matches
-            noResults.style.display = visibleCount === 0 && query.length > 0 ? "block" : "none";
-        });
+    games.forEach((game) => {
+        const button = state.gameButtons[game.name.toLowerCase()];
+        const matches = game.name.toLowerCase().includes(trimmedQuery);
+
+        if (trimmedQuery.length === 0) {
+            // Show all games when search is empty
+            button.classList.remove("hidden");
+            visibleCount++;
+        } else if (matches) {
+            // Show matching games
+            button.classList.remove("hidden");
+            visibleCount++;
+        } else {
+            // Hide non-matching games
+            button.classList.add("hidden");
+        }
+    });
+
+    // Show or hide "no results" message
+    noResults.style.display = visibleCount === 0 && trimmedQuery.length > 0 ? "block" : "none";
+}
+
+/**
+ * Handles keyboard events for accessibility
+ * @param {KeyboardEvent} event - The keyboard event
+ */
+function handleKeyboardEvents(event) {
+    // Close modal with Escape key
+    if (event.key === "Escape" && !gameModal.classList.contains("hidden")) {
+        closeModal();
+    }
+    
+    // Toggle fullscreen with F key
+    if (event.key === "f" || event.key === "F") {
+        if (!gameModal.classList.contains("hidden") && event.ctrlKey) {
+            event.preventDefault();
+            toggleFullscreen();
+        }
+    }
+}
+
+/**
+ * Handles fullscreen change events
+ */
+function handleFullscreenChange() {
+    if (!document.fullscreenElement && 
+        !document.webkitFullscreenElement && 
+        !document.mozFullScreenElement && 
+        !document.msFullscreenElement) {
+        // Exited fullscreen
+        state.isFullscreen = false;
+        fullscreenBtn.textContent = "⛶ Fullscreen";
+    }
+}
+
+/**
+ * Initialize all event listeners
+ */
+function initializeEventListeners() {
+    // Search input
+    searchInput.addEventListener("input", (e) => {
+        handleSearch(e.target.value);
+    });
+
+    // Modal close button
+    modalCloseBtn.addEventListener("click", closeModal);
+
+    // Modal background click
+    gameModal.addEventListener("click", (e) => {
+        if (e.target === gameModal) {
+            closeModal();
+        }
+    });
+
+    // Fullscreen button
+    fullscreenBtn.addEventListener("click", toggleFullscreen);
+
+    // Keyboard events
+    document.addEventListener("keydown", handleKeyboardEvents);
+
+    // Fullscreen change event
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("msfullscreenchange", handleFullscreenChange);
+}
+
+/**
+ * Initialize application
+ */
+function init() {
+    renderGameButtons();
+    initializeEventListeners();
+    console.log("Game launcher initialized successfully");
+}
+
+// Start the application when DOM is ready
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+} else {
+    init();
+}
+
+// Handle memory cleanup when page unloads
+window.addEventListener("beforeunload", () => {
+    if (gameIframe.src && gameIframe.src.startsWith("blob:")) {
+        URL.revokeObjectURL(gameIframe.src);
+    }
+});
+
     </script>
-</body>
-</html>
-
-</script>
 </body>
 </html>
