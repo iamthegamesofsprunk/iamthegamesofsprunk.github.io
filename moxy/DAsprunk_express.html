@@ -8,8 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
+    
     <style>
-    * {
+        * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -192,40 +193,45 @@ body {
     outline-offset: 2px;
 }
 
-/* Modal Styles */
-.modal {
+/* ===== GAME MODAL STYLES ===== */
+
+.game-modal {
     position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    padding: 1rem;
     animation: fadeIn 0.3s ease-out;
 }
 
-.modal.hidden {
+.game-modal.hidden {
     display: none;
 }
 
-.modal-content {
-    background-color: rgba(30, 30, 30, 0.95);
+.game-modal-content {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
     border: 2px solid #0f0;
-    border-radius: 0.6em;
-    box-shadow: 0 0 30px rgba(0, 255, 100, 0.4);
+    border-radius: 0.8em;
+    box-shadow: 0 0 30px rgba(0, 255, 100, 0.4), 0 0 60px rgba(0, 255, 100, 0.2);
     width: 90%;
-    height: 90%;
     max-width: 1200px;
-    max-height: 800px;
+    height: 85vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     animation: slideUp 0.3s ease-out;
 }
 
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -233,88 +239,56 @@ body {
     }
 }
 
-.modal-header {
+.game-modal-header {
+    padding: 1.5rem;
+    border-bottom: 2px solid #0f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid #0f0;
+    flex-shrink: 0;
 }
 
-#modal-title {
+.game-modal-header h2 {
+    font-size: 1.8rem;
     color: #0f0;
-    font-family: 'Love Ya Like A Sister', cursive;
-    font-size: 1.5rem;
     text-shadow: 0 0 10px rgba(0, 255, 100, 0.5);
-}
-
-.modal-close {
-    background: none;
-    border: none;
-    color: #0f0;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-close:hover {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(0, 255, 100, 0.6);
-}
-
-.modal-body {
+    margin: 0;
     flex: 1;
     overflow: hidden;
-    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-#game-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background-color: #000;
-}
-
-#game-iframe:-webkit-full-screen {
-    width: 100%;
-    height: 100%;
-}
-
-.modal-footer {
+.game-modal-controls {
+    padding: 1rem 1.5rem;
+    border-bottom: 2px solid #0f0;
     display: flex;
     gap: 1rem;
-    padding: 1rem;
-    border-top: 1px solid #0f0;
-    justify-content: flex-end;
+    flex-wrap: wrap;
+    flex-shrink: 0;
 }
 
 .modal-btn {
     padding: 0.6rem 1.2rem;
-    font-size: 1rem;
     font-family: 'Love Ya Like A Sister', cursive;
+    font-size: 0.95rem;
     background: linear-gradient(135deg, #0f0 0%, #00aa44 100%);
     color: #000;
-    border: 2px solid #0f0;
+    border: none;
     border-radius: 0.4em;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: bold;
+    font-weight: normal;
+    box-shadow: 0 0 10px rgba(0, 255, 100, 0.4);
 }
 
 .modal-btn:hover {
-    box-shadow: 0 0 15px rgba(0, 255, 100, 0.6);
+    box-shadow: 0 0 20px rgba(0, 255, 100, 0.7);
     transform: translateY(-2px);
 }
 
 .modal-btn:active {
     transform: translateY(0);
-    box-shadow: 0 0 10px rgba(0, 255, 100, 0.4);
 }
 
 .modal-btn:focus-visible {
@@ -322,7 +296,56 @@ body {
     outline-offset: 2px;
 }
 
-/* Mobile optimization */
+.modal-close-btn {
+    padding: 0.6rem 1rem;
+    min-width: auto;
+    background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+    flex-shrink: 0;
+}
+
+.modal-close-btn:hover {
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.7);
+}
+
+.game-container {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.game-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #000;
+}
+
+/* ===== FULLSCREEN STYLES ===== */
+
+.game-iframe:fullscreen {
+    width: 100%;
+    height: 100%;
+}
+
+/* For different browser prefixes */
+.game-iframe:-webkit-full-screen {
+    width: 100%;
+    height: 100%;
+}
+
+.game-iframe:-moz-full-screen {
+    width: 100%;
+    height: 100%;
+}
+
+.game-iframe:-ms-fullscreen {
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== MOBILE OPTIMIZATION ===== */
+
 @media (max-width: 600px) {
     body {
         padding: 1.5rem 1rem;
@@ -349,23 +372,32 @@ body {
         padding: 0.7rem 0.9rem;
     }
 
-    .modal-content {
+    .game-modal-content {
         width: 95%;
-        height: 95%;
-        max-height: 600px;
+        height: 90vh;
     }
 
-    .modal-footer {
-        flex-direction: column;
+    .game-modal-header {
+        padding: 1rem;
+    }
+
+    .game-modal-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .game-modal-controls {
+        padding: 0.8rem 1rem;
         gap: 0.5rem;
     }
 
     .modal-btn {
-        width: 100%;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
     }
 }
 
-/* Scrollbar styling */
+/* ===== SCROLLBAR STYLING ===== */
+
 #box::-webkit-scrollbar {
     width: 8px;
 }
@@ -384,7 +416,7 @@ body {
 #box::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 255, 100, 0.7);
 }
-</style>
+    </style>
 </head>
 
 <body>
@@ -406,24 +438,27 @@ body {
         <div id="no-results">No games found matching your search.</div>
     </div>
 
-    <!-- Pop-up Modal -->
-    <div id="game-modal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modal-title">Game</h2>
-                <button class="modal-close" aria-label="Close game window">&times;</button>
+    <!-- Game Viewer Modal -->
+    <div id="game-modal" class="game-modal hidden">
+        <div class="game-modal-content">
+            <div class="game-modal-header">
+                <h2 id="game-modal-title">Game Title</h2>
+                <button id="modal-close-btn" class="modal-btn modal-close-btn" aria-label="Close game window">✕</button>
             </div>
-            <div class="modal-body">
-                <iframe id="game-iframe" title="Game content"></iframe>
-            </div>
-            <div class="modal-footer">
+            <div class="game-modal-controls">
                 <button id="fullscreen-btn" class="modal-btn" aria-label="Toggle fullscreen">⛶ Fullscreen</button>
+                <button id="download-btn" class="modal-btn" aria-label="Download game HTML">⬇ Download</button>
+                <button id="new-tab-btn" class="modal-btn" aria-label="Open in new tab">🔗 New Tab</button>
+            </div>
+            <div id="game-container" class="game-container">
+                <iframe id="game-iframe" class="game-iframe" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals" title="Game viewer"></iframe>
             </div>
         </div>
     </div>
 
+
     <script>
-// Game data - single source of truth
+          // Game data - single source of truth
 const games = [
     { name: "Cory in the house", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clcoryinthehouse.html" },
     { name: "Deltarune", url: "https://cdn.jsdelivr.net/gh/technonyte00/deltarune@main/index.html" },
@@ -449,270 +484,214 @@ const gameContainer = document.getElementById("box");
 const noResults = document.getElementById("no-results");
 const searchInput = document.getElementById("search-input");
 const gameModal = document.getElementById("game-modal");
-const modalTitle = document.getElementById("modal-title");
+const gameModalContent = document.querySelector(".game-modal-content");
+const gameModalTitle = document.getElementById("game-modal-title");
 const gameIframe = document.getElementById("game-iframe");
-const modalCloseBtn = document.querySelector(".modal-close");
+const modalCloseBtn = document.getElementById("modal-close-btn");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
+const downloadBtn = document.getElementById("download-btn");
+const newTabBtn = document.getElementById("new-tab-btn");
 
-// State management
-const state = {
-    gameButtons: {},
-    currentGame: null,
-    currentGameUrl: null,
-    isFullscreen: false
-};
+// State
+const gameButtons = {};
+let currentGameData = null;
+let currentGameHTML = null;
+let isFullscreen = false;
 
-/**
- * Fetches game HTML and creates a blob URL
- * @param {string} url - The URL of the game to fetch
- * @returns {Promise<string>} - The blob URL or error message
- */
-function fetchGameAsBlob(url) {
-    return fetch(url + "?t=" + Date.now())
-        .then(response => response.text())
-        .then(html => {
-            const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-            const blobUrl = URL.createObjectURL(blob);
-            return blobUrl;
-        })
-        .catch(error => {
-            console.error("Error fetching game:", error);
-            throw error;
-        });
-}
+// ===== GAME LOADING & MODAL ===== 
 
-/**
- * Opens a game in a pop-up modal window with iframe
- * @param {string} gameName - The name of the game
- * @param {string} url - The URL of the game
- */
-function openGameInModal(gameName, url) {
-    // Show loading state
-    modalTitle.textContent = `${gameName} (Loading...)`;
-    gameModal.classList.remove("hidden");
-    gameIframe.src = "";
-    
-    // Fetch game and create blob URL
-    fetchGameAsBlob(url)
-        .then(blobUrl => {
-            // Set iframe source to blob URL
-            gameIframe.src = blobUrl;
-            
-            // Update state
-            state.currentGame = gameName;
-            state.currentGameUrl = url;
-            state.isFullscreen = false;
-            
-            // Update modal title
-            modalTitle.textContent = gameName;
-            
-            // Reset fullscreen button state
-            fullscreenBtn.textContent = "⛶ Fullscreen";
-        })
-        .catch(error => {
-            modalTitle.textContent = `${gameName} (Failed to Load)`;
-            gameIframe.src = "";
-            console.error("Failed to open game in modal:", error);
-            
-            // Show error after a delay
-            setTimeout(() => {
-                alert(`Failed to load ${gameName}. Please try again.`);
-            }, 500);
-        });
-}
-
-/**
- * Toggles fullscreen mode for the iframe
- */
-function toggleFullscreen() {
+async function openGameInModal(gameName, gameUrl) {
     try {
-        const iframeElement = gameIframe;
+        // Show loading state
+        gameIframe.src = "about:blank";
+        gameModalTitle.textContent = `Loading ${gameName}...`;
+        gameModal.classList.remove("hidden");
         
-        if (!state.isFullscreen) {
-            // Request fullscreen
-            if (iframeElement.requestFullscreen) {
-                iframeElement.requestFullscreen();
-            } else if (iframeElement.webkitRequestFullscreen) {
-                iframeElement.webkitRequestFullscreen();
-            } else if (iframeElement.mozRequestFullScreen) {
-                iframeElement.mozRequestFullScreen();
-            } else if (iframeElement.msRequestFullscreen) {
-                iframeElement.msRequestFullscreen();
-            }
-            
-            state.isFullscreen = true;
-            fullscreenBtn.textContent = "⛶ Exit Fullscreen";
-        } else {
-            // Exit fullscreen
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-            } else if (document.webkitFullscreenElement) {
-                document.webkitExitFullscreen();
-            } else if (document.mozFullScreenElement) {
-                document.mozCancelFullScreen();
-            } else if (document.msFullscreenElement) {
-                document.msExitFullscreen();
-            }
-            
-            state.isFullscreen = false;
-            fullscreenBtn.textContent = "⛶ Fullscreen";
-        }
+        // Fetch game HTML
+        const response = await fetch(gameUrl + "?t=" + Date.now());
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        const gameHTML = await response.text();
+        
+        // Store data for other buttons
+        currentGameData = { name: gameName, url: gameUrl };
+        currentGameHTML = gameHTML;
+        
+        // Update modal title
+        gameModalTitle.textContent = gameName;
+        
+        // Inject HTML into iframe
+        gameIframe.srcdoc = gameHTML;
+        
     } catch (error) {
-        console.error("Fullscreen error:", error);
-        alert("Fullscreen is not supported or was denied.");
+        console.error("Error loading game:", error);
+        gameModalTitle.textContent = `Error loading ${gameName}`;
+        gameIframe.srcdoc = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #f00; font-family: Arial, sans-serif; font-size: 18px;">Failed to load game. Please try again.</div>`;
     }
 }
 
-/**
- * Closes the game modal and cleans up resources
- */
 function closeModal() {
-    gameModal.classList.add("hidden");
-    
-    // Revoke blob URL to free memory
-    if (gameIframe.src && gameIframe.src.startsWith("blob:")) {
-        URL.revokeObjectURL(gameIframe.src);
+    // Exit fullscreen if active
+    if (isFullscreen) {
+        exitFullscreen();
     }
     
-    gameIframe.src = "";
-    state.currentGame = null;
-    state.currentGameUrl = null;
-    state.isFullscreen = false;
+    gameModal.classList.add("hidden");
+    gameIframe.srcdoc = "";
+    currentGameData = null;
+    currentGameHTML = null;
+    isFullscreen = false;
     fullscreenBtn.textContent = "⛶ Fullscreen";
 }
 
-/**
- * Renders game buttons dynamically
- */
-function renderGameButtons() {
-    games.forEach((game) => {
-        const button = document.createElement("button");
-        button.className = "game-btn";
-        button.textContent = game.name;
-        button.onclick = () => openGameInModal(game.name, game.url);
-        button.setAttribute("aria-label", `Launch ${game.name}`);
-        gameContainer.insertBefore(button, noResults);
-        state.gameButtons[game.name.toLowerCase()] = button;
-    });
-}
-
-/**
- * Handles search input and filters game buttons
- * @param {string} query - The search query
- */
-function handleSearch(query) {
-    const trimmedQuery = query.toLowerCase().trim();
-    let visibleCount = 0;
-
-    games.forEach((game) => {
-        const button = state.gameButtons[game.name.toLowerCase()];
-        const matches = game.name.toLowerCase().includes(trimmedQuery);
-
-        if (trimmedQuery.length === 0) {
-            // Show all games when search is empty
-            button.classList.remove("hidden");
-            visibleCount++;
-        } else if (matches) {
-            // Show matching games
-            button.classList.remove("hidden");
-            visibleCount++;
+async function toggleFullscreen() {
+    try {
+        if (!isFullscreen) {
+            // Enter fullscreen
+            if (gameIframe.requestFullscreen) {
+                await gameIframe.requestFullscreen();
+            } else if (gameIframe.webkitRequestFullscreen) {
+                await gameIframe.webkitRequestFullscreen();
+            } else if (gameIframe.mozRequestFullScreen) {
+                await gameIframe.mozRequestFullScreen();
+            } else if (gameIframe.msRequestFullscreen) {
+                await gameIframe.msRequestFullscreen();
+            }
+            isFullscreen = true;
+            fullscreenBtn.textContent = "⛶ Exit Fullscreen";
         } else {
-            // Hide non-matching games
-            button.classList.add("hidden");
+            // Exit fullscreen
+            exitFullscreen();
         }
-    });
-
-    // Show or hide "no results" message
-    noResults.style.display = visibleCount === 0 && trimmedQuery.length > 0 ? "block" : "none";
+    } catch (error) {
+        console.error("Fullscreen request failed:", error);
+        alert("Fullscreen not supported or permission denied.");
+    }
 }
 
-/**
- * Handles keyboard events for accessibility
- * @param {KeyboardEvent} event - The keyboard event
- */
-function handleKeyboardEvents(event) {
-    // Close modal with Escape key
-    if (event.key === "Escape" && !gameModal.classList.contains("hidden")) {
-        closeModal();
+function exitFullscreen() {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else if (document.webkitFullscreenElement) {
+        document.webkitExitFullscreen();
+    } else if (document.mozFullScreenElement) {
+        document.mozCancelFullScreen();
+    } else if (document.msFullscreenElement) {
+        document.msExitFullscreen();
     }
     
-    // Toggle fullscreen with F key
-    if (event.key === "f" || event.key === "F") {
-        if (!gameModal.classList.contains("hidden") && event.ctrlKey) {
-            event.preventDefault();
-            toggleFullscreen();
-        }
-    }
+    isFullscreen = false;
+    fullscreenBtn.textContent = "⛶ Fullscreen";
 }
 
-/**
- * Handles fullscreen change events
- */
+// Listen for fullscreen change events
+document.addEventListener("fullscreenchange", handleFullscreenChange);
+document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+document.addEventListener("msfullscreenchange", handleFullscreenChange);
+
 function handleFullscreenChange() {
-    if (!document.fullscreenElement && 
-        !document.webkitFullscreenElement && 
-        !document.mozFullScreenElement && 
-        !document.msFullscreenElement) {
+    const fullscreenElement = document.fullscreenElement || 
+                             document.webkitFullscreenElement || 
+                             document.mozFullScreenElement || 
+                             document.msFullscreenElement;
+    
+    if (!fullscreenElement) {
         // Exited fullscreen
-        state.isFullscreen = false;
+        isFullscreen = false;
         fullscreenBtn.textContent = "⛶ Fullscreen";
     }
 }
 
-/**
- * Initialize all event listeners
- */
-function initializeEventListeners() {
-    // Search input
-    searchInput.addEventListener("input", (e) => {
-        handleSearch(e.target.value);
-    });
+function downloadGameHTML() {
+    if (!currentGameHTML || !currentGameData) {
+        console.error("No game data available to download");
+        return;
+    }
+    
+    const element = document.createElement("a");
+    const file = new Blob([currentGameHTML], { type: "text/html" });
+    element.href = URL.createObjectURL(file);
+    element.download = `${currentGameData.name.replace(/\s+/g, "_")}.html`;
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    URL.revokeObjectURL(element.href);
+}
 
-    // Modal close button
-    modalCloseBtn.addEventListener("click", closeModal);
+function openInNewTab() {
+    if (!currentGameHTML || !currentGameData) {
+        console.error("No game data available");
+        return;
+    }
+    
+    const newWin = window.open("about:blank", "_blank");
+    if (newWin) {
+        newWin.document.open();
+        newWin.document.write(currentGameHTML);
+        newWin.document.close();
+    } else {
+        console.warn("Pop-up was blocked. Please allow pop-ups for this site.");
+    }
+}
 
-    // Modal background click
-    gameModal.addEventListener("click", (e) => {
-        if (e.target === gameModal) {
-            closeModal();
+// ===== EVENT LISTENERS =====
+
+modalCloseBtn.addEventListener("click", closeModal);
+fullscreenBtn.addEventListener("click", toggleFullscreen);
+downloadBtn.addEventListener("click", downloadGameHTML);
+newTabBtn.addEventListener("click", openInNewTab);
+
+// Close modal when clicking outside the modal content
+gameModal.addEventListener("click", (e) => {
+    if (e.target === gameModal) {
+        closeModal();
+    }
+});
+
+// Close modal with Escape key (but not if fullscreen - Escape naturally exits fullscreen)
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !gameModal.classList.contains("hidden") && !isFullscreen) {
+        closeModal();
+    }
+});
+
+// ===== RENDER GAME BUTTONS =====
+
+games.forEach((game) => {
+    const button = document.createElement("button");
+    button.className = "game-btn";
+    button.textContent = game.name;
+    button.onclick = () => openGameInModal(game.name, game.url);
+    button.setAttribute("aria-label", `Launch ${game.name}`);
+    gameContainer.insertBefore(button, noResults);
+    gameButtons[game.name.toLowerCase()] = button;
+});
+
+// ===== SEARCH FUNCTIONALITY =====
+
+searchInput.addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    games.forEach((game) => {
+        const button = gameButtons[game.name.toLowerCase()];
+        const matches = game.name.toLowerCase().includes(query);
+
+        if (matches && query.length > 0) {
+            button.classList.remove("hidden");
+            visibleCount++;
+        } else if (query.length === 0) {
+            button.classList.remove("hidden");
+            visibleCount++;
+        } else {
+            button.classList.add("hidden");
         }
     });
 
-    // Fullscreen button
-    fullscreenBtn.addEventListener("click", toggleFullscreen);
-
-    // Keyboard events
-    document.addEventListener("keydown", handleKeyboardEvents);
-
-    // Fullscreen change event
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
-    document.addEventListener("msfullscreenchange", handleFullscreenChange);
-}
-
-/**
- * Initialize application
- */
-function init() {
-    renderGameButtons();
-    initializeEventListeners();
-    console.log("Game launcher initialized successfully");
-}
-
-// Start the application when DOM is ready
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-} else {
-    init();
-}
-
-// Handle memory cleanup when page unloads
-window.addEventListener("beforeunload", () => {
-    if (gameIframe.src && gameIframe.src.startsWith("blob:")) {
-        URL.revokeObjectURL(gameIframe.src);
-    }
+    // Show "no results" message if nothing matches
+    noResults.style.display = visibleCount === 0 && query.length > 0 ? "block" : "none";
 });
-    </script>
+</script>
 </body>
 </html>
