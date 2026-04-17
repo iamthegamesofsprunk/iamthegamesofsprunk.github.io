@@ -467,23 +467,18 @@ const state = {
  * @param {string} url - The URL of the game to fetch
  * @returns {Promise<string>} - The blob URL or error message
  */
-async function fetchGameAsBlob(url) {
-    try {
-        const response = await fetch(url + "?t=" + Date.now());
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const text = await response.text();
-        const blob = new Blob([text], { type: 'text/html' });
-        const blobUrl = URL.createObjectURL(blob);
-        
-        return blobUrl;
-    } catch (error) {
-        console.error("Error fetching game:", error);
-        throw error;
-    }
+function fetchGameAsBlob(url) {
+    return fetch(url + "?t=" + Date.now())
+        .then(response => response.text())
+        .then(html => {
+            const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+            const blobUrl = URL.createObjectURL(blob);
+            return blobUrl;
+        })
+        .catch(error => {
+            console.error("Error fetching game:", error);
+            throw error;
+        });
 }
 
 /**
@@ -491,59 +486,58 @@ async function fetchGameAsBlob(url) {
  * @param {string} gameName - The name of the game
  * @param {string} url - The URL of the game
  */
-async function openGameInModal(gameName, url) {
-    try {
-        // Show loading state
-        modalTitle.textContent = `${gameName} (Loading...)`;
-        gameModal.classList.remove("hidden");
-        gameIframe.src = "";
-        
-        // Fetch game and create blob URL
-        const blobUrl = await fetchGameAsBlob(url);
-        
-        // Set iframe source to blob URL
-        gameIframe.src = blobUrl;
-        
-        // Update state
-        state.currentGame = gameName;
-        state.currentGameUrl = url;
-        state.isFullscreen = false;
-        
-        // Update modal title
-        modalTitle.textContent = gameName;
-        
-        // Reset fullscreen button state
-        fullscreenBtn.textContent = "⛶ Fullscreen";
-        
-    } catch (error) {
-        modalTitle.textContent = `${gameName} (Failed to Load)`;
-        gameIframe.src = "";
-        console.error("Failed to open game in modal:", error);
-        
-        // Show error after a delay
-        setTimeout(() => {
-            alert(`Failed to load ${gameName}. Please try again.`);
-        }, 500);
-    }
+function openGameInModal(gameName, url) {
+    // Show loading state
+    modalTitle.textContent = `${gameName} (Loading...)`;
+    gameModal.classList.remove("hidden");
+    gameIframe.src = "";
+    
+    // Fetch game and create blob URL
+    fetchGameAsBlob(url)
+        .then(blobUrl => {
+            // Set iframe source to blob URL
+            gameIframe.src = blobUrl;
+            
+            // Update state
+            state.currentGame = gameName;
+            state.currentGameUrl = url;
+            state.isFullscreen = false;
+            
+            // Update modal title
+            modalTitle.textContent = gameName;
+            
+            // Reset fullscreen button state
+            fullscreenBtn.textContent = "⛶ Fullscreen";
+        })
+        .catch(error => {
+            modalTitle.textContent = `${gameName} (Failed to Load)`;
+            gameIframe.src = "";
+            console.error("Failed to open game in modal:", error);
+            
+            // Show error after a delay
+            setTimeout(() => {
+                alert(`Failed to load ${gameName}. Please try again.`);
+            }, 500);
+        });
 }
 
 /**
  * Toggles fullscreen mode for the iframe
  */
-async function toggleFullscreen() {
+function toggleFullscreen() {
     try {
         const iframeElement = gameIframe;
         
         if (!state.isFullscreen) {
             // Request fullscreen
             if (iframeElement.requestFullscreen) {
-                await iframeElement.requestFullscreen();
+                iframeElement.requestFullscreen();
             } else if (iframeElement.webkitRequestFullscreen) {
-                await iframeElement.webkitRequestFullscreen();
+                iframeElement.webkitRequestFullscreen();
             } else if (iframeElement.mozRequestFullScreen) {
-                await iframeElement.mozRequestFullScreen();
+                iframeElement.mozRequestFullScreen();
             } else if (iframeElement.msRequestFullscreen) {
-                await iframeElement.msRequestFullscreen();
+                iframeElement.msRequestFullscreen();
             }
             
             state.isFullscreen = true;
@@ -719,7 +713,6 @@ window.addEventListener("beforeunload", () => {
         URL.revokeObjectURL(gameIframe.src);
     }
 });
-
     </script>
 </body>
 </html>
