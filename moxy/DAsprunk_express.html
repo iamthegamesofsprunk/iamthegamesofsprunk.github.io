@@ -458,7 +458,7 @@ body {
 
 
     <script>
-     // Game data - single source of truth
+          // Game data - single source of truth
 const games = [
     { name: "Cory in the house", url: "https://cdn.jsdelivr.net/gh/iamthegamesofsprunk/iamthegamesofsprunk.github.io@main/the_depths_of_UGS/clcoryinthehouse.html" },
     { name: "Deltarune", url: "https://cdn.jsdelivr.net/gh/technonyte00/deltarune@main/index.html" },
@@ -495,27 +495,38 @@ const newTabBtn = document.getElementById("new-tab-btn");
 // State
 const gameButtons = {};
 let currentGameData = null;
+let currentGameHTML = null;
 let isFullscreen = false;
 
 // ===== GAME LOADING & MODAL ===== 
 
-function openGameInModal(gameName, gameUrl) {
+async function openGameInModal(gameName, gameUrl) {
     try {
         // Show loading state
         gameIframe.src = "about:blank";
         gameModalTitle.textContent = `Loading ${gameName}...`;
         gameModal.classList.remove("hidden");
         
-        // Load game via src (best for external games, avoids CORS issues)
-        gameIframe.src = gameUrl;
-        gameModalTitle.textContent = gameName;
+        // Fetch game HTML
+        const response = await fetch(gameUrl + "?t=" + Date.now());
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        const gameHTML = await response.text();
         
         // Store data for other buttons
         currentGameData = { name: gameName, url: gameUrl };
+        currentGameHTML = gameHTML;
+        
+        // Update modal title
+        gameModalTitle.textContent = gameName;
+        
+        // Inject HTML into iframe
+        gameIframe.srcdoc = gameHTML;
         
     } catch (error) {
         console.error("Error loading game:", error);
         gameModalTitle.textContent = `Error loading ${gameName}`;
+        gameIframe.srcdoc = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #f00; font-family: Arial, sans-serif; font-size: 18px;">Failed to load game. Please try again.</div>`;
     }
 }
 
@@ -526,8 +537,9 @@ function closeModal() {
     }
     
     gameModal.classList.add("hidden");
-    gameIframe.src = "about:blank";
+    gameIframe.srcdoc = "";
     currentGameData = null;
+    currentGameHTML = null;
     isFullscreen = false;
     fullscreenBtn.textContent = "⛶ Fullscreen";
 }
@@ -592,21 +604,35 @@ function handleFullscreenChange() {
 }
 
 function downloadGameHTML() {
-    if (!currentGameData) {
-        alert("Download unavailable for this game (loaded via iframe)");
+    if (!currentGameHTML || !currentGameData) {
+        console.error("No game data available to download");
         return;
     }
     
-    window.open(currentGameData.url, "_blank");
+    const element = document.createElement("a");
+    const file = new Blob([currentGameHTML], { type: "text/html" });
+    element.href = URL.createObjectURL(file);
+    element.download = `${currentGameData.name.replace(/\s+/g, "_")}.html`;
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    URL.revokeObjectURL(element.href);
 }
 
 function openInNewTab() {
-    if (!currentGameData) {
+    if (!currentGameHTML || !currentGameData) {
         console.error("No game data available");
         return;
     }
     
-    window.open(currentGameData.url, "_blank");
+    const newWin = window.open("about:blank", "_blank");
+    if (newWin) {
+        newWin.document.open();
+        newWin.document.write(currentGameHTML);
+        newWin.document.close();
+    } else {
+        console.warn("Pop-up was blocked. Please allow pop-ups for this site.");
+    }
 }
 
 // ===== EVENT LISTENERS =====
@@ -632,17 +658,15 @@ document.addEventListener("keydown", (e) => {
 
 // ===== RENDER GAME BUTTONS =====
 
-if (Object.keys(gameButtons).length === 0) {
-    games.forEach((game) => {
-        const button = document.createElement("button");
-        button.className = "game-btn";
-        button.textContent = game.name;
-        button.onclick = () => openGameInModal(game.name, game.url);
-        button.setAttribute("aria-label", `Launch ${game.name}`);
-        gameContainer.insertBefore(button, noResults);
-        gameButtons[game.name.toLowerCase()] = button;
-    });
-}
+games.forEach((game) => {
+    const button = document.createElement("button");
+    button.className = "game-btn";
+    button.textContent = game.name;
+    button.onclick = () => openGameInModal(game.name, game.url);
+    button.setAttribute("aria-label", `Launch ${game.name}`);
+    gameContainer.insertBefore(button, noResults);
+    gameButtons[game.name.toLowerCase()] = button;
+});
 
 // ===== SEARCH FUNCTIONALITY =====
 
@@ -652,12 +676,20 @@ searchInput.addEventListener("input", (e) => {
 
     games.forEach((game) => {
         const button = gameButtons[game.name.toLowerCase()];
-        const isVisible = query.length === 0 || game.name.toLowerCase().includes(query);
-        
-        button.classList.toggle("hidden", !isVisible);
-        if (isVisible) visibleCount++;
+        const matches = game.name.toLowerCase().includes(query);
+
+        if (matches && query.length > 0) {
+            button.classList.remove("hidden");
+            visibleCount++;
+        } else if (query.length === 0) {
+            button.classList.remove("hidden");
+            visibleCount++;
+        } else {
+            button.classList.add("hidden");
+        }
     });
 
+    // Show "no results" message if nothing matches
     noResults.style.display = visibleCount === 0 && query.length > 0 ? "block" : "none";
 });
 </script>
